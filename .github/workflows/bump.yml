@@ -22,11 +22,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       # Bot commits do not count as repo activity, so GitHub disabled this cron
-      # after 60 days (2026-09-05, found 2026-09-14). The API keepalive resets
-      # that timer on every run without touching the git history.
-      - uses: gautamkrishnar/keepalive-workflow@v2
-        with:
-          use_api: true
+      # after 60 days (2026-09-05, found 2026-09-14). Re-enabling the workflow
+      # through the API on every run resets that timer without touching the git
+      # history. Done with gh rather than a marketplace action: this account's
+      # Actions policy blocks third-party actions ("Repository access blocked").
+      - name: Keep the schedule alive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/bump.yml/enable"
       - name: Bump formula from PyPI
         id: bump
         run: python3 scripts/bump.py Formula/polymarket-tui.rb polymarket-tui

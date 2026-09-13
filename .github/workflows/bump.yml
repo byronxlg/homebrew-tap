@@ -14,12 +14,19 @@ on:
 
 permissions:
   contents: write
+  actions: write   # keepalive re-enables this workflow via the API
 
 jobs:
   bump:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # Bot commits do not count as repo activity, so GitHub disabled this cron
+      # after 60 days (2026-09-05, found 2026-09-14). The API keepalive resets
+      # that timer on every run without touching the git history.
+      - uses: gautamkrishnar/keepalive-workflow@v2
+        with:
+          use_api: true
       - name: Bump formula from PyPI
         id: bump
         run: python3 scripts/bump.py Formula/polymarket-tui.rb polymarket-tui

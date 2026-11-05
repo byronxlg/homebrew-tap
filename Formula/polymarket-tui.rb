@@ -1,8 +1,8 @@
 class PolymarketTui < Formula
   desc "Terminal client for Polymarket prediction markets"
   homepage "https://github.com/byronxlg/polymarket-tui"
-  url "https://files.pythonhosted.org/packages/86/f1/11f5f1943d5b7b853b5d973be0bd9ab112665c227e22cd6c718269122e24/polymarket_tui-0.1.1.tar.gz"
-  sha256 "3cc7540c5319a5da713ad56ae85699bb1506e05fc0067f50d328c65252df0c62"
+  url "https://files.pythonhosted.org/packages/dc/2e/d9e0bd3de7caa578ce5612f7bb4510d6d99e8cd13098ad95f64dcdf24bf9/polymarket_tui-0.1.2.tar.gz"
+  sha256 "ae492541605fc8208c44eb7e9fab7651fe982d82e6cac2a9e613ff731d4d9966"
   license "MIT"
   head "https://github.com/byronxlg/polymarket-tui.git", branch: "main"
 
